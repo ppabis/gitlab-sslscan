@@ -1,0 +1,15 @@
+scan websites:
+  image:
+    name: ppabis/mysslscan:latest
+    entrypoint: [""]
+  script: |-
+    sslscan --targets=targets.txt --xml=results.xml
+  artifacts:
+    paths: ["results.xml"]
+    expire_in: 30 minutes
+
+analyze results:
+  image: python:3-alpine
+  needs: ["scan websites"]
+  script: |-
+    python analyze.py results.xml

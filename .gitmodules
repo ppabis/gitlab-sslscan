@@ -1,0 +1,3 @@
+[submodule "sslscan"]
+	path = sslscan
+	url = https://github.com/ppabis/sslscan.git
